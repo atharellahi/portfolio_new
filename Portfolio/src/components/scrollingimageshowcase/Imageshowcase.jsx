@@ -4,9 +4,7 @@ import styles from './Imageshowcase.module.css'
 
 const ImageShowCase = () => {
 
-    const [focusedSection, setFocusedSection] = useState(false)
     const [focusedURL, setFocusedURL] = useState(null)
-    const [bgImgCords, setbgImgCords] = useState([0, 0])
 
     const imagearray = [
         '/blog/data/chic comfort unveiling the latest shawl trends/intro-image.png',
@@ -32,7 +30,7 @@ const ImageShowCase = () => {
         if (track.current.dataset.mouseDownAt === '0') return
         const clientX = e.touches ? e.touches[0].clientX : e.clientX;
         const mouseDelta = parseFloat(track.current.dataset.mouseDownAt) - clientX;
-        const maxDelta = window.innerWidth;
+        const maxDelta = window.innerWidth < 600 ? window.innerWidth * 2 : window.innerWidth;
         const percentage = (mouseDelta / maxDelta) * -100,
             nextPercentageUnconstrained = parseFloat(track.current.dataset.prevPercentage) + percentage,
             nextPercentage = Math.max(Math.min(nextPercentageUnconstrained, 0), -100);
@@ -58,11 +56,11 @@ const ImageShowCase = () => {
         track.current.dataset.prevPercentage = track.current.dataset.percentage ? track.current.dataset.percentage : 0;
     }
 
-    const handlesectionclick = (e, url) => {
+    const handlesectionclick = (url) => {
+        setFocusedURL(url)
         focusedimage.current.style.opacity = `1`
         focusedimage.current.style.width = `100vw`
         focusedimage.current.style.height = `100vh`
-        setFocusedURL(url)
     }
 
     const handlesectionexit = () => {
