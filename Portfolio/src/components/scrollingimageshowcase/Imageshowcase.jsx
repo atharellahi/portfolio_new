@@ -55,7 +55,7 @@ const ImageShowCase = () => {
 
     const handleMouseUp = (e) => {
         track.current.dataset.mouseDownAt = '0'
-        track.current.dataset.prevPercentage = track.current.dataset.percentage
+        track.current.dataset.prevPercentage = track.current.dataset.percentage ? track.current.dataset.percentage : 0;
     }
 
     const handlesectionclick = (e, url) => {
@@ -75,7 +75,7 @@ const ImageShowCase = () => {
         <>
             <div className={styles.parent} onMouseDown={(e) => { handleMouseDown(e) }} onMouseMove={(e) => { handleMouseMove(e) }} onMouseUp={(e) => { handleMouseUp(e) }}
                 onTouchStart={(e) => { handleMouseDown(e) }} onTouchMove={(e) => { handleMouseMove(e) }} onTouchEnd={(e) => { handleMouseUp(e) }}>
-                <div className={`${styles.track} ${focusedSection ? styles.trackfocused : ''}`} ref={track} data-mouse-down-at='0' data-prev-percentage='0'>
+                <div className={`${styles.track}`} ref={track} data-mouse-down-at='0' data-prev-percentage='0'>
                     {imagearray.map((url, index) => {
                         return (
                             <img key={index} className={`${styles.image}`} src={url} draggable={false}
