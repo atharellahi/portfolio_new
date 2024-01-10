@@ -7,7 +7,7 @@ const ImageShowCase = () => {
     const [focusedURL, setFocusedURL] = useState(null)
     const [dataMouseDownAt, setDataMouseDownAt] = useState(0)
     const [dataPrevPercentage, setDataPrevPercentage] = useState(0)
-    const [dataPercentage, setDataPercentage] = useState(null)
+    const [dataPercentage, setDataPercentage] = useState(0)
     const [allowClick, setAllowClick] = useState(true)
 
     const imagearray = [
@@ -75,12 +75,17 @@ const ImageShowCase = () => {
         focusedimage.current.style.opacity = `1`
         focusedimage.current.style.width = `100vw`
         focusedimage.current.style.height = `100vh`
+        setTimeout(() => {
+            focusedimage.current.classList.add(styles.bluredbg)
+        }, 500);
+
     }
 
     const handlesectionexit = () => {
         focusedimage.current.style.opacity = `0`
         focusedimage.current.style.width = `0px`
         focusedimage.current.style.height = `0px`
+        focusedimage.current.classList.remove(styles.bluredbg)
     }
 
     return (
@@ -100,7 +105,10 @@ const ImageShowCase = () => {
                     })
                     }
                 </div>
-                <img className={styles.bgimg} src={focusedURL} ref={focusedimage} alt='Background Image' onClick={(e) => { handlesectionexit(e) }} />
+                <div className={styles.expandedsection}>
+                    <img className={styles.bgimg} src={focusedURL} ref={focusedimage} alt='Background Image' onClick={(e) => { handlesectionexit(e) }} />
+                </div>
+
             </div>
 
         </>

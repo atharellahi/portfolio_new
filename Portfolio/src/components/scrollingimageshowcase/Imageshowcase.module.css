@@ -28,7 +28,7 @@
     position: absolute;
     top: 0;
     left: 0;
-    transition: 1s;
+    transition: .25s;
 }
 
 .sectionname {
@@ -39,19 +39,19 @@
     font-size: 24px;
     font-weight: 500;
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
-    transition: 1s;
+    transition: .25s;
 }
 
 .section:hover .sectionname {
     bottom: 50%;
     transform: translate(-50%, 50%);
     text-shadow: 0px 0px 5px rgba(0, 0, 0, 0.7);
-    transition: 1s;
+    transition: .25s;
 }
 
 .section:hover .shadowbox {
     box-shadow: inset 0 0 300px 0 rgba(255, 255, 255, .5);
-    transition: 1s;
+    transition: .25s;
 }
 
 .track {
@@ -77,4 +77,9 @@
     object-position: center;
     transition: .5s;
     z-index: 1;
+}
+
+.bluredbg {
+    filter: blur(10px);
+    transition: 2s;
 }
