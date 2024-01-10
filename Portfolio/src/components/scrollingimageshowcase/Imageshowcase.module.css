@@ -28,9 +28,13 @@
 .bgimg {
     opacity: 0;
     position: absolute;
-    height: 400px;
-    width: 260px;
+    height: 0px;
+    width: 0px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     object-fit: cover;
     object-position: center;
     transition: .5s;
+    z-index: 1;
 }

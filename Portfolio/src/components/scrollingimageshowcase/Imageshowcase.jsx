@@ -59,32 +59,16 @@ const ImageShowCase = () => {
     }
 
     const handlesectionclick = (e, url) => {
-        const xcord = e.touches ? e.touches[0].clientX : e.clientX;
-        const ycord = e.touches ? e.touches[0].clientY : e.clientY;
-        focusedimage.current.style.zIndex = '1'
-        // focusedimage.current.style.scale = `1`
         focusedimage.current.style.opacity = `1`
-        focusedimage.current.style.top = `${ycord}px`
-        focusedimage.current.style.left = `${xcord}px`
-        setFocusedURL(url)
-        focusedimage.current.style.transform = `translate(-${xcord}px,-${ycord}px)`
         focusedimage.current.style.width = `100vw`
         focusedimage.current.style.height = `100vh`
+        setFocusedURL(url)
     }
 
     const handlesectionexit = () => {
-        focusedimage.current.style.top = '50%'
-        focusedimage.current.style.left = `50%`
-        focusedimage.current.style.transform = `translate(-50%,-50%)`
         focusedimage.current.style.opacity = `0`
-        focusedimage.current.style.width = `240px`
-        focusedimage.current.style.height = `400px`
-        // focusedimage.current.style.scale = `0`
-        setTimeout(() => {
-            setFocusedURL(null)
-            focusedimage.current.style.zIndex = '-2'
-        }, 1000);
-
+        focusedimage.current.style.width = `0px`
+        focusedimage.current.style.height = `0px`
     }
 
     return (
