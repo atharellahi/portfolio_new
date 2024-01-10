@@ -4,6 +4,7 @@ import { useRef, useState } from 'react'
 import styles from './Imageshowcase.module.css'
 
 const ImageShowCase = () => {
+    const [focusedSection, setFocusedSection] = useState(null)
     const [focusedURL, setFocusedURL] = useState(null)
     const [dataMouseDownAt, setDataMouseDownAt] = useState(0)
     const [dataPrevPercentage, setDataPrevPercentage] = useState(0)
@@ -69,9 +70,10 @@ const ImageShowCase = () => {
         setDataPrevPercentage(dataPercentage ? dataPercentage : 0)
     }
 
-    const handlesectionclick = (url) => {
+    const handlesectionclick = (url, name) => {
         if (!allowClick) return
         setFocusedURL(url)
+        setFocusedSection(name)
         focusedimage.current.style.opacity = `1`
         focusedimage.current.style.width = `100vw`
         focusedimage.current.style.height = `100vh`
@@ -95,7 +97,7 @@ const ImageShowCase = () => {
                 <div className={`${styles.track}`} ref={track}>
                     {imagearray.map((item, index) => {
                         return (
-                            <div className={styles.section} key={index} onClick={() => handlesectionclick(item.url)}>
+                            <div className={styles.section} key={index} onClick={() => handlesectionclick(item.url, item['section name'])}>
                                 <img className={`${styles.image}`} key={index} src={item.url} draggable={false} alt='gallery images' />
                                 <div className={styles.sectionname}>{item['section name']}</div>
                                 <div className={styles.shadowbox}></div>
@@ -105,8 +107,34 @@ const ImageShowCase = () => {
                     })
                     }
                 </div>
-                <div className={styles.expandedsection}>
-                    <img className={styles.bgimg} src={focusedURL} ref={focusedimage} alt='Background Image' onClick={(e) => { handlesectionexit(e) }} />
+                <div className={styles.expandedsection} onClick={(e) => { handlesectionexit(e) }}>
+                    <img className={styles.bgimg} src={focusedURL} ref={focusedimage} alt='Background Image' />
+                    <div className={styles.expandedcontainer}>
+                        {focusedSection === 'Stack' ?
+                            <>
+                            </>
+                            :
+                            null
+                        }
+                        {focusedSection === 'Projects' ?
+                            <>
+                            </>
+                            :
+                            null
+                        }
+                        {focusedSection === 'Services' ?
+                            <>
+                            </>
+                            :
+                            null
+                        }
+                        {focusedSection === 'About Me' ?
+                            <>
+                            </>
+                            :
+                            null
+                        }
+                    </div>
                 </div>
 
             </div>
